@@ -35,9 +35,6 @@ def availableMoves(x):
 # game loop
 while True:
     my_platinum = int(input())  # your available Platinum
-    vis = []
-    pods = []
-    owner = []
     for i in range(zone_count):
         # z_id: this zone's ID
         # owner_id: the player who owns this zone (-1 otherwise)
@@ -53,21 +50,18 @@ while True:
                 enemyBase = z_id
         if pods_p0 > 0:
             pods.append([z_id,pods_p0])
-        vis.append(visible)
-        owner.append(owner_id)
     # Write an action using print
     # To debug: print("Debug messages...", file=sys.stderr)
-    print(links, file=sys.stderr)
-    print(vis, file=sys.stderr)
-    print(owner, file=sys.stderr)
-    print(pods, file=sys.stderr)
-    print(availableMoves(pods[0][0]), file=sys.stderr)
     for i in range(len(pods)):
-        x = pods[i][1]
+        x = random.randint(1, pods[i][1])
         y = pods[i][0]
         
         for j in range(len(availableMoves(y))):
-            if owner[availableMoves(y)[j]] != 0:
+            if availableMoves(y)[j] == enemyBase:
+                z=availableMoves(y)[j]
+            elif owner[availableMoves(y)[j]] == 1:
+                z=availableMoves(y)[j]
+            elif owner[availableMoves(y)[j]] == -1:
                 z=availableMoves(y)[j]
             else:
                 z = random.choice(availableMoves(y))
