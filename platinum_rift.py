@@ -53,16 +53,24 @@ while True:
                 enemyBase = z_id
         if pods_p0 > 0:
             pods.append([z_id,pods_p0])
+        vis.append(visible)
+        owner.append(owner_id)
     # Write an action using print
     # To debug: print("Debug messages...", file=sys.stderr)
     print(links, file=sys.stderr)
-    print(visible, file=sys.stderr)
+    print(vis, file=sys.stderr)
+    print(owner, file=sys.stderr)
     print(pods, file=sys.stderr)
     print(availableMoves(pods[0][0]), file=sys.stderr)
     for i in range(len(pods)):
         x = pods[i][1]
         y = pods[i][0]
-        z = random.choice(availableMoves(y))
+        
+        for j in range(len(availableMoves(y))):
+            if owner[availableMoves(y)[j]] != 0:
+                z=availableMoves(y)[j]
+            else:
+                z = random.choice(availableMoves(y))
         print(str(x) + " " + str(y) + " " + str(z), end=" ")
     # first line for movement commands, second line no longer used (see the protocol in the statement for details)
 
