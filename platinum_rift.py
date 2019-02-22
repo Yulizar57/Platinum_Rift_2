@@ -36,6 +36,7 @@ def availableMoves(x):
 while True:
     my_platinum = int(input())  # your available Platinum
     pods = []
+    owner = []
     for i in range(zone_count):
         # z_id: this zone's ID
         # owner_id: the player who owns this zone (-1 otherwise)
@@ -51,6 +52,7 @@ while True:
                 enemyBase = z_id
         if pods_p0 > 0:
             pods.append([z_id,pods_p0])
+        owner.append(owner_id)
     # Write an action using print
     # To debug: print("Debug messages...", file=sys.stderr)
     for i in range(len(pods)):
