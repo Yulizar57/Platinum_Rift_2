@@ -35,6 +35,7 @@ def availableMoves(x):
 # game loop
 while True:
     my_platinum = int(input())  # your available Platinum
+    pods = []
     for i in range(zone_count):
         # z_id: this zone's ID
         # owner_id: the player who owns this zone (-1 otherwise)
